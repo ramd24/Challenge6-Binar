@@ -27,3 +27,23 @@
   .textSignUp{
       font-size: 14px;
   }
+
+.welcomeText{
+    padding-top: 60px;
+    margin-left: -50px;
+}
+.sewa{
+    font-size: 36px;
+    font-weight: 700;
+}
+.selamat{
+    font-size: 14px;
+}
+
+div.boxHome {
+  height: 34px;
+  width: 100px;
+  background-color: #0D28A6;
+  border-radius: 5px;
+  margin-top: 15px;
+}

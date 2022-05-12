@@ -23,7 +23,7 @@ const Register = () => {
                                 <input type="password" className="form-control mb-3" id="password" />
                             </div>
                             <input type="submit" value="Sign Up" className={`${style.btn} btn-block btn-primary`} />
-                            <div className='textSignUp'>Already have an account? <a href='#'> Login</a></div>
+                            <div className={style.textSignUp}>Already have an account? <a href='#'> Login</a></div>
                         </form>
                 </div>
             </div>
