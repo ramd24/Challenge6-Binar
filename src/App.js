@@ -6,7 +6,7 @@ import AdminDashboard from './Page/AdminDashboard';
 import React, { useEffect } from 'react'
 import jwtDecode from "jwt-decode";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import userSlice from "./store/user";
 import ProtectedRoute from "./Component/HOC/ProtectedRoute";
 import UnprotectedRoute from "./Component/HOC/UnprotectedRoute";
@@ -15,6 +15,7 @@ import Logout from "./Page/Logout";
 function App() {
 
   const dispatch = useDispatch();
+  const user = useSelector( store => store.user.data )
 
   useEffect(() => {
     try{
