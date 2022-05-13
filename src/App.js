@@ -11,6 +11,8 @@ import userSlice from "./store/user";
 import ProtectedRoute from "./Component/HOC/ProtectedRoute";
 import UnprotectedRoute from "./Component/HOC/UnprotectedRoute";
 import Logout from "./Page/Logout";
+import Home from './Page/Home'
+import AdminRoute from "./Component/HOC/AdminRoute";
 
 function App() {
 
@@ -35,17 +37,18 @@ function App() {
     <>
         <BrowserRouter>
           <Routes>
-            {/* {ALL} */}
-            <Route path="/" element={<UserDashboard/>} />
+            {/* Public */}
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/logout" element={<Logout />} />
-            {/* {PUBLIC ONLY} */}
-            <Route path="/" element={<UnprotectedRoute />}>
-              <Route path="/register" element={<Register/>}/>
-              <Route path="/login" element={<Login/>}/>
-            </Route>
-            {/* {PROTECTED} */}
+
+            {/* Protected*/}
             <Route path="/" element={<ProtectedRoute />}>
-              <Route path="/adminDashboard" element={<AdminDashboard/>}/>
+              <Route path="/admin" element={<AdminDashboard />} />
+            </Route>
+            <Route path="/" element={<ProtectedRoute />}>
+              <Route path="/user" element={<UserDashboard />} />
             </Route>
           </Routes>
         </BrowserRouter>

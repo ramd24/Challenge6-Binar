@@ -1,14 +1,16 @@
-import React, { useState }from 'react'
+import React, { useState, useEffect }from 'react'
 import style from './pages.module.css'
 import carimg from '../img/backgroundlogin.png'
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import jwtDecode from "jwt-decode";
 import userSlice from "../store/user";
 import axios from "axios";
+import { GoogleLogin } from 'react-google-login';
 
 const Login = () => {
+
 
     const { register, handleSubmit, formState } = useForm()
     const [loginStatus, setLoginStatus] = useState({
@@ -18,7 +20,8 @@ const Login = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
+    
+    const {data} = useSelector(state => state.user )
     const formSubmitHandler = (data) => {
         const postData = {
             email:data.user_email,
@@ -34,7 +37,11 @@ const Login = () => {
                 axios.get(`http://localhost:4000/users/${user.sub}`)
                 .then( res => {
                     dispatch( userSlice.actions.addUser({ userData: res.data }) )
-                    navigate('/')
+                    if (res.data.isAdmin) {
+                        navigate("/admin")
+                    } else {
+                        navigate("/user")
+                    }
                 })
             }
         }).catch ( err => {
@@ -44,6 +51,21 @@ const Login = () => {
               });
         })
     }
+
+    const googleSuccessResponse = (res) => {
+        dispatch( userSlice.actions.loginGoogle(res.accessToken) )
+        console.log(res.accessToken)
+    }
+    const googleFailureResponse = (err) => {
+        console.log(err)
+    }
+
+    useEffect( () => {
+        if (data) {
+            navigate('/user')
+        }
+        console.log(data)
+    }, [data])
 
   return (
     <div className='content'>
@@ -68,7 +90,15 @@ const Login = () => {
                                 <p className="text-sm text-red-500 italic">{formState.errors.user_password?.type === 'required' && "password is required"}</p>
                             </div>
                             <input type="submit" className={`${style.btn} btn-block btn-primary`} value="Log in" />
+                            <GoogleLogin
+                                clientId="547625838498-ipttddpf985fa7gksm8qsiie11295r48.apps.googleusercontent.com"
+                                buttonText="Login"
+                                onSuccess={googleSuccessResponse}
+                                onFailure={googleFailureResponse}
+                                cookiePolicy={'single_host_origin'}
+                            />
                             <p>Don't have an account? <Link to="/register" className="text-primary">Register</Link></p>
+
                         </form>
                 </div>
             </div>

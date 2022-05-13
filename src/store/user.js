@@ -24,7 +24,12 @@ const userSlice = createSlice({
         removeUser: (state) => {
             state.data = null;
         },
+        loginGoogle: (state, action) => {
+            state.data = {...action.payload.google}
+        }
     }
 })
 
 export default userSlice
+
+//GOOGLE LOSS

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-const Home = () => {
+const UserDashboard = () => {
 
   const navigate = useNavigate();
 
@@ -79,4 +79,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default UserDashboard

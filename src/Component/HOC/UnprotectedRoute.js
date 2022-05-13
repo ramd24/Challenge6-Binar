@@ -7,12 +7,12 @@ const UnprotectedRoute = () => {
     const user = useSelector( store => store.user.data )
 
     if ( user === null ){
-        return (
-            <Outlet />
+        return(
+            <Outlet/>
         )
-    } else {
-        return (
-            <Navigate to="/" />
+    } else{
+        return(
+            <Navigate to='/' />
         )
     }
   
