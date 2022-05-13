@@ -1,8 +1,24 @@
 import React from 'react'
 import style from './pages.module.css'
 import homeCar from '../img/img_car.png'
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
+
+  const navigate = useNavigate();
+
+  const loginHandler = () => {
+       navigate('/login');
+  } 
+
+  const logoutHandler = () => {
+    navigate('/logout');
+  }
+
+  const user = useSelector( store => store.user.data )
+
   return (
     <>
       <nav className="navbar navbar-expand-lg mt-2 sticky-top " style={{backgroundColor:'#F1F3FF'}}>
@@ -25,9 +41,19 @@ const Home = () => {
               <li className="nav-item">
                 <a className="nav-link " href="#">FAQ</a>
               </li>
-              <li className="nav-item">
-                <button className="register btn btn-success ml-3">Register</button>
-              </li>
+              {/* {Public} */}
+              { user === null && 
+                <li className="nav-item">
+                  <button className="register btn btn-success ml-3" onClick={loginHandler}>Login</button>
+                </li>
+              }
+              {/* {Protected} */}
+              { user !== null && 
+                <li className="nav-item">
+                  <button className="register btn btn-success ml-3" onClick={logoutHandler}>Log out</button>
+                </li>
+              }
+              
             </ul>
           </div>
         </div>

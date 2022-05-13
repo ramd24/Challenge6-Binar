@@ -26,10 +26,9 @@ function App() {
     <>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<h1>Home</h1>} />
+            <Route path="/" element={<UserDashboard/>} />
             <Route path="/register" element={<Register/>}/>
             <Route path="/login" element={<Login/>}/>
-            <Route path="/userDashboard" element={<UserDashboard/>}/>
             <Route path="/adminDashboard" element={<AdminDashboard/>}/>
           </Routes>
         </BrowserRouter>
