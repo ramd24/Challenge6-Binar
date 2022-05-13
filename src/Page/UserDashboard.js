@@ -10,7 +10,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const loginHandler = () => {
-       navigate('/login');
+    navigate('/login');
   } 
 
   const logoutHandler = () => {
