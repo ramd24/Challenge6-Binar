@@ -26,7 +26,7 @@ const Register = () => {
             isAdmin:false
         }
 
-        axios.post('http://localhost:4000/login', postData)
+        axios.post('http://localhost:4000/register', postData)
         .then( res => {
             if ( typeof res.data.accessToken != 'undefined' ) {
                 localStorage.setItem('challengeAccessToken', res.data.accessToken)

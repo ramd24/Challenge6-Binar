@@ -34,7 +34,7 @@ const Login = () => {
                 axios.get(`http://localhost:4000/users/${user.sub}`)
                 .then( res => {
                     dispatch( userSlice.actions.addUser({ userData: res.data }) )
-                    navigate('/userDashboard')
+                    navigate('/')
                 })
             }
         }).catch ( err => {
@@ -67,7 +67,7 @@ const Login = () => {
                                 <input type="password" className="form-control mb-3" id="user_password" name="user_password" {...register('user_password',  {required: true})} autoComplete="true" />
                                 <p className="text-sm text-red-500 italic">{formState.errors.user_password?.type === 'required' && "password is required"}</p>
                             </div>
-                            <input type="submit" className={`${style.btn} btn-block btn-primary`} />
+                            <input type="submit" className={`${style.btn} btn-block btn-primary`} value="Log in" />
                             <p>Don't have an account? <Link to="/register" className="text-primary">Register</Link></p>
                         </form>
                 </div>
